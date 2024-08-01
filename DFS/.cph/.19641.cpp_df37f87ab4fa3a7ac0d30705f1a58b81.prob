@@ -1,0 +1,1 @@
+{"name":"Local: 19641","url":"c:\\Users\\SSAFY\\Desktop\\HM\\알고리즘2\\DFS\\19641.cpp","tests":[{"id":1722411948983,"input":"3\n2 1 3 -1\n3 2 -1\n1 2 -1\n2","output":"1 2 3\n2 1 6\n3 4 5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\SSAFY\\Desktop\\HM\\알고리즘2\\DFS\\19641.cpp","group":"local","local":true}
