@@ -26,20 +26,11 @@ public class Main {
                 int next = list.get(j);
                 double degree = Math.toDegrees(Math.atan2(Math.abs(i-j), building - next));
 
-                // if (building == 7) {
-                //     System.out.println("degree = " + degree);
-                // }
-
                 if (biggest < degree) {
                     biggest = degree;
                     cnt++;
                 }
             }
-
-            // if (building == 7) {
-            //     System.out.println("-----");
-            // }
-           // System.out.println("-----");
 
             biggest = 0;
             // after
@@ -47,21 +38,12 @@ public class Main {
                 int next = list.get(j);
                 double degree = Math.toDegrees(Math.atan2(Math.abs(i-j), building - next));
 
-                // if (building == 7) {
-                //     System.out.println("degree = " + degree);
-                // }
-                if (biggest < degree) {
+               if (biggest < degree) {
                     biggest = degree;
-                    // possible
                     cnt++;
                 }
             }
-
-            // if (building == 7) {
-            //     System.out.println(cnt);   
-            // }
             answer = Math.max(cnt, answer);
         }
         System.out.println(answer);
     }    
-}
