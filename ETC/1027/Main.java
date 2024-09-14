@@ -38,7 +38,7 @@ public class Main {
                 int next = list.get(j);
                 double degree = Math.toDegrees(Math.atan2(Math.abs(i-j), building - next));
 
-                if (biggest < degree) {
+               if (biggest < degree) {
                     biggest = degree;
                     cnt++;
                 }
@@ -47,4 +47,3 @@ public class Main {
         }
         System.out.println(answer);
     }    
-}
