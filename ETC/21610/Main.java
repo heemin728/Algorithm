@@ -22,7 +22,6 @@ public class Main {
         int a=before[0];
         int b=before[1];
 
-
         int x=0;
         int y=0;
 
@@ -124,10 +123,6 @@ public class Main {
         cloud.add(new int[]{N,1});
         cloud.add(new int[]{N,2});
 
-        // for(int i=0;i<cloud.size();i++){
-        //     System.out.println(cloud.get(i)[0] + " - " + cloud.get(i)[1]);
-        // }
-
         for(int i=0;i<M;i++){
             st=new StringTokenizer(br.readLine());
 
@@ -149,9 +144,7 @@ public class Main {
         for(int i=1;i<=N;i++){
             for(int j=1;j<=N;j++){
                 answer+=A[i][j];
-                //System.out.print(A[i][j] + " " );
             }
-            //System.out.println();
         }
 
         System.out.println(answer);
