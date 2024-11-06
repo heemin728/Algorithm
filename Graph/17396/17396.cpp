@@ -3,7 +3,7 @@
 #include<algorithm>
 #include<queue>
 #define MAX 100001
-#define INF 1000000000001
+#define INF 1000000000008
 using namespace std;
 
 int n,m;
