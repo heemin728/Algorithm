@@ -13,7 +13,7 @@ bool infection[MAX];
 
 vector<pair<int,int>> v[MAX];
 
-int dijkstra(int start){
+void dijkstra(int start){
     priority_queue<pair<int,int>> pq;
 
     pq.push({0,start});
@@ -24,8 +24,6 @@ int dijkstra(int start){
         int node = pq.top().second;
         pq.pop();
 
-        //cout << "\nnode = " << node << ", cost = " << cost << "\n";
-
         if(dist[node] < cost){
             continue;
         }
@@ -33,14 +31,11 @@ int dijkstra(int start){
         for(int i=0;i<v[node].size();i++){
             int ncost= cost + v[node][i].second;
             int next = v[node][i].first;
-
-            //cout << "-next= " << next << "-> ncost = " << ncost << ", dist[next] = " << dist[next] << "\n";
         
             infection[next]=true;
 
             if( ncost < dist[next] ){
                 dist[next]=ncost;
-              //  cout << "next =" << next << ", dist = " << dist[next] << "\n";
                 pq.push({-ncost,next});
             }
         }
@@ -76,16 +71,9 @@ int main(){
         for(int i=1;i<=n;i++){
             if(infection[i]){
                 total++;
-                //cnt+=dist[i];
                 cnt=max(cnt,dist[i]);
             }
         }
-
-        // for(int i=1;i<=n;i++){
-        //     cout << dist[i] << " ";
-        // }
-        // cout << "\n";
-
         cout << total << " " << cnt << "\n";
     }
 }
