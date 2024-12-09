@@ -6,12 +6,8 @@ using namespace std;
 
 int N,M;
 vector<int> ts;
-int socket[11];
-int max_index;
-int max_value;
 
 int main(){
-
     cin >> N >> M;
     for(int i=0;i<N;i++){
         int a;
@@ -20,12 +16,6 @@ int main(){
     }
 
     sort(ts.begin(),ts.end(), greater<>());
-
-    // for(int i=0;i<N;i++){
-    //     cout << ts[i] << " ";
-    // }
-    // cout << "\n";
-
     priority_queue<int, vector<int>, greater<int>> pq;
 
     for(int i=0;i<M;i++){
@@ -41,7 +31,6 @@ int main(){
     int answer=0;
     while(!pq.empty()){
         answer=pq.top();
-        //cout << pq.top() << " ";
         pq.pop();
     }
     cout << answer << "\n";
