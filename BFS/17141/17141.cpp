@@ -36,12 +36,7 @@ void calculate(){
     }
     
     queue<pair<int,int>> q;
-    bool visited[MAX][MAX];
-    for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            visited[i][j]=false;
-        }
-    }
+    bool visited[MAX][MAX] = {false, };
 
     int time = 0;
 
