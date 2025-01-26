@@ -1,41 +1,67 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#define MAX 1001
 using namespace std;
+
 int n;
+int arr[MAX][MAX];
+pair<int,int> ans[MAX][MAX];
+int dx[2]={0,1};
+int dy[2]={1,0};
+int answer=0;
 
-int main() {
+bool isInRange(int i, int j){
+    return i>=0 && j>=0 && i<n && j<n;
+}
+
+
+int main(int argc, char** argv)
+{
     cin >> n;
-    vector<vector<int>> arr(n, vector<int>(n));
-
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<n;j++) {
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
             cin >> arr[i][j];
         }
-    }
+    }   
+
+    ans[0][0].first=arr[0][0];
+    ans[0][0].second=arr[0][0]*2;
     
-    vector<vector<int>> ex(n, vector<int>(n, 0));
-    vector<vector<int>> in(n, vector<int>(n, 0));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
 
-    ex[0][0] = arr[0][0];
-    in[0][0] = arr[0][0]*2;
+            int ex=0;
+            int in=0;
+            if(j>0){
+                ex=ans[i][j-1].first + arr[i][j];
+                //in=max(ans[i][j-1].second , ans[i][j-1].first+arr[i][j]*2);
+                
+                in=max(in, ans[i][j-1].second+arr[i][j]);
+                in=max(in, ans[i][j-1].first+arr[i][j]*2);
 
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<n;j++) {
-            if(i>0) {
-                ex[i][j] = max(ex[i][j], ex[i-1][j] + arr[i][j]);
-                in[i][j] = max(in[i][j], in[i-1][j] + arr[i][j]);
-                in[i][j] = max(in[i][j], ex[i-1][j] + arr[i][j] * 2);
+                ans[i][j].first=max(ans[i][j].first,ex);
+                ans[i][j].second=max(ans[i][j].second,in);
             }
-            if(j>0) {
-                ex[i][j] = max(ex[i][j], ex[i][j-1] + arr[i][j]);
-                in[i][j] = max(in[i][j], in[i][j-1] + arr[i][j]);
-                in[i][j] = max(in[i][j], ex[i][j-1] + arr[i][j] * 2);
-            }
+            if(i>0){
+                ex=ans[i-1][j].first + arr[i][j];
+                in=max(in, ans[i-1][j].second+arr[i][j]);
+                in=max(in, ans[i-1][j].first+arr[i][j]*2);
+                
+                ans[i][j].first=max(ans[i][j].first,ex);
+                ans[i][j].second=max(ans[i][j].second,in);            }
         }
     }
-    cout << in[n-1][n-1] << "\n";
+
+    // for(int i=0;i<n;i++){
+    //     for(int j=0;j<n;j++){
+    //         cout << "(" << ans[i][j].first << ", " << ans[i][j].second << ") ";
+    //     }
+    //     cout << "\n";
+    // }
+
+
+    cout << ans[n-1][n-1].second << "\n";
     
-    return 0;
+   return 0;
 }
