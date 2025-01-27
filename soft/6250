@@ -1,0 +1,101 @@
+#include<iostream>
+#include<algorithm>
+#include<queue>
+#include<vector>
+#define MAX 100001
+using namespace std;
+
+int main(int argc, char** argv)
+{
+    int N;
+    cin >> N;
+    int score[4][MAX];
+    for(int i=0;i<4;i++){
+        for(int j=0;j<=N;j++){
+            score[i][j]=0;
+        }
+    }
+
+    for(int i=0;i<3;i++){
+        
+        priority_queue<pair<int,int>> pq;
+        int ans[MAX];
+        for(int j=0;j<N;j++){
+            ans[j]=0;
+        }
+        
+        for(int j=0;j<N;j++){
+            int num;
+            cin >> num;
+
+            score[i][j]=num;
+            score[3][j]+=num;
+
+            pq.push({num,j});
+        }
+
+        int k=1;
+        int dou=0;
+
+        int before=0;
+        while(!pq.empty()){
+            int s=pq.top().first;
+            int index=pq.top().second;
+            pq.pop();
+            if(before==s){
+                dou++;
+                ans[index]=k-dou;
+            }
+            else{
+                ans[index]=k;
+                dou=0;
+            }
+            k++;
+
+            before=s;
+        }
+
+        for(int t=0;t<N;t++){
+            cout << ans[t] << " ";
+        }
+        cout << "\n";
+    }
+
+    priority_queue<pair<int,int>> pq;
+    for(int i=0;i<N;i++){
+        pq.push({score[3][i],i});
+    }
+
+    int k=1;
+    int dou=0;
+    int v[MAX];
+    for(int j=0;j<N;j++){
+        v[j]=0;
+    }
+
+    int before=0;
+    
+    while(!pq.empty()){
+        int s=pq.top().first;
+        int index=pq.top().second;
+        pq.pop();
+
+        if(before==s){
+            dou++;
+            v[index]=k-dou;
+        }
+        else{
+            v[index]=k;
+            dou=0;
+        }
+        k++;
+
+        before=s;
+    }
+
+    for(int i=0;i<N;i++){
+        cout << v[i] << " ";
+    }
+
+   return 0;
+}
